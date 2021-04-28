@@ -1,1 +1,1 @@
-# santander-anagrams
+# anagrams
