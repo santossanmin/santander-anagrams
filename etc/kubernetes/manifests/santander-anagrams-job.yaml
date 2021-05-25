@@ -1,0 +1,31 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: santander-anagrams.job
+spec:
+  template:
+    spec:
+      containers:
+        -
+          args: 
+            - anagrams.py
+          command:
+            - python
+          image: index.docker.io/ssanchezmingo/santander-anagrams:ci
+          imagePullPolicy: IfNotPresent
+          name: santander-anagrams-job-conteiner
+          volumeMounts:
+            - 
+              mountPath: /data
+              name: santander-anagrams-volume
+              readOnly: true
+      initContainers:
+        -
+          args:
+          command:
+          env:
+          image:
+          name:
+          volumeMounts:
+          
+status:
