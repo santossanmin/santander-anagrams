@@ -40,6 +40,7 @@ spec:
                   key: url
                   name: santander-anagrams-job-secret
           image: busybox
+          imagePullPolicy: IfNotPresent
           name: santander-anagrams-job-initcontainer
           volumeMounts:
             - 
