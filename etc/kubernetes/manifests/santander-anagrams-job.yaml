@@ -1,19 +1,19 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: santander-anagrams.job
+  name: santander-anagrams-job
 spec:
   template:
     spec:
       containers:
         -
-          args: 
+          args:
             - anagrams.py
           command:
             - python
           image: index.docker.io/ssanchezmingo/santander-anagrams:ci
           imagePullPolicy: IfNotPresent
-          name: santander-anagrams-job-conteiner
+          name: santander-anagrams-job-container
           volumeMounts:
             - 
               mountPath: /data
@@ -21,35 +21,34 @@ spec:
               readOnly: true
       initContainers:
         -
-          args:
+          args: 
             - -c
             - ' set -x ; cd /downloads ; rm -f ${filename} ; wget ${url}/${filename} '
-          command:
+          command: 
             - sh
           env:
-            -
+            - 
               name: filename
-              valueFrom:
+              valueFrom: 
                 configMapKeyRef:
                   key: filename
                   name: santander-anagrams-job-cm
-            -
+            - 
               name: url
               valueFrom:
                 secretKeyRef:
-                  key: filename
+                  key: url
                   name: santander-anagrams-job-secret
-
           image: busybox
           name: santander-anagrams-job-initcontainer
           volumeMounts:
-            -
+            - 
               mountPath: /downloads
               name: santander-anagrams-job-volume
               readOnly: false
       restartPolicy: Never
-      volumes:
-        -
+      volumes: 
+        - 
           name: santander-anagrams-job-volume
           emptyDir: {}
 status: {}
